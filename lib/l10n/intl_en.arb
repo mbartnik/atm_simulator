@@ -1,0 +1,24 @@
+{
+    "@@locale": "en_US",
+    "ok": "OK",
+    "atm": "ATM",
+    "balance": "Balance:",
+    "currencySuffix": " PLN",
+    "insufficientFundsDialogTitle": "Insufficient funds",
+    "insufficientFundsDialogDesc": "Please enter a number that's lower than your balance.",
+    "cashOut": "Withdraw money",
+    "cashOutSuccessfulDialogTitle": "Money withdrawal has been successful",
+    "cashOutSuccessfulDialogDesc": "You withdrew {amount} PLN in below denominations:\n",
+    "@cashOutSuccessfulDialogDesc": {
+        "type": "text",
+        "placeholders": {
+            "amount": {
+                "example": "120",
+                "description": "Amount of withdrawn money"
+            }
+        }
+    },
+    "invalidNumberEnteredDialogTitle": "Invalid number entered",
+    "invalidNumberEnteredDialogDesc": "ATM only have banknotes with 10 PLN being the lowest. Please enter a number equal or higher than 10 and divisible by it.",
+    "textfieldHint": "Amount to be withdrawn"
+}

@@ -1,0 +1,24 @@
+{
+    "@@locale": "pl_PL",
+    "ok": "OK",
+    "atm": "Bankomat",
+    "balance": "Saldo:",
+    "currencySuffix": " PLN",
+    "insufficientFundsDialogTitle": "Niewystarczające środki na koncie",
+    "insufficientFundsDialogDesc": "Wprowadź kwotę mniejszą niż Twoje saldo.",
+    "cashOut": "Wypłać",
+    "cashOutSuccessfulDialogTitle": "Pieniądze zostały wypłacone",
+    "cashOutSuccessfulDialogDesc": "Wypłacono {amount} PLN w następujących banknotach:\n",
+    "@cashOutSuccessfulDialogDesc": {
+        "type": "text",
+        "placeholders": {
+            "amount": {
+                "example": "120",
+                "description": "Kwota wypłaconych pieniędzy"
+            }
+        }
+    },
+    "invalidNumberEnteredDialogTitle": "Wprowadzono nieprawidłową kwotę",
+    "invalidNumberEnteredDialogDesc": "Bankomat wydaje tylko banknoty, gdzie najniższy to 10 PLN. Proszę podać kwotę równą lub większą niż 10 i podzielną przez 10.",
+    "textfieldHint": "Kwota do wypłaty"
+}
