@@ -73,7 +73,7 @@ void main() {
     final element = tester.element(find.byType(MyApp));
     final container = ProviderScope.containerOf(element);
     final startingBalance = container.read(userNotifierProvider).balance;
-    const amount = 3000;
+    const amount = 6000;
     expect(find.text('$startingBalance${S.current.currencySuffix}'), findsOneWidget);
     expect(
         find.byWidgetPredicate(
