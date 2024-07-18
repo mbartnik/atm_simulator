@@ -32,6 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "cashOutSuccessfulDialogTitle":
             MessageLookupByLibrary.simpleMessage("Pieniądze zostały wypłacone"),
         "currencySuffix": MessageLookupByLibrary.simpleMessage(" PLN"),
+        "insufficientAtmFundsDialogDesc": MessageLookupByLibrary.simpleMessage(
+            "Brak wystarczających środków w bankomacie. Przepraszamy za niedogodności."),
+        "insufficientAtmFundsDialogTitle": MessageLookupByLibrary.simpleMessage(
+            "Niewystarczające środki w bankomacie"),
         "insufficientFundsDialogDesc": MessageLookupByLibrary.simpleMessage(
             "Wprowadź kwotę mniejszą niż Twoje saldo."),
         "insufficientFundsDialogTitle": MessageLookupByLibrary.simpleMessage(

@@ -6,6 +6,8 @@
     "currencySuffix": " PLN",
     "insufficientFundsDialogTitle": "Niewystarczające środki na koncie",
     "insufficientFundsDialogDesc": "Wprowadź kwotę mniejszą niż Twoje saldo.",
+    "insufficientAtmFundsDialogTitle": "Niewystarczające środki w bankomacie",
+    "insufficientAtmFundsDialogDesc": "Brak wystarczających środków w bankomacie. Przepraszamy za niedogodności.",
     "cashOut": "Wypłać",
     "cashOutSuccessfulDialogTitle": "Pieniądze zostały wypłacone",
     "cashOutSuccessfulDialogDesc": "Wypłacono {amount} PLN w następujących banknotach:\n",

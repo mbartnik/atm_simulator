@@ -6,6 +6,8 @@
     "currencySuffix": " PLN",
     "insufficientFundsDialogTitle": "Insufficient funds",
     "insufficientFundsDialogDesc": "Please enter a number that's lower than your balance.",
+    "insufficientAtmFundsDialogTitle": "Insufficient funds inside ATM",
+    "insufficientAtmFundsDialogDesc": "There is not enough funds present inside ATM. We apologize for the inconvenience.",
     "cashOut": "Withdraw money",
     "cashOutSuccessfulDialogTitle": "Money withdrawal has been successful",
     "cashOutSuccessfulDialogDesc": "You withdrew {amount} PLN in below denominations:\n",

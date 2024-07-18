@@ -88,7 +88,7 @@ class __$$UserImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UserImpl implements _User {
-  const _$UserImpl({this.balance = 2000});
+  const _$UserImpl({this.balance = 5000});
 
   @override
   @JsonKey()

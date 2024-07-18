@@ -10,8 +10,9 @@ class AtmScreen extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final user = ref.watch(userProvider);
+    final user = ref.watch(userNotifierProvider);
     final amount = useState(0);
+    final isButtonEnabled = amount.value > 0;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
@@ -30,16 +31,22 @@ class AtmScreen extends HookConsumerWidget {
           _AmountTextField(amount),
           const Spacer(),
           TextButton.icon(
-            onPressed: () => _cashOut(ref, context, amount),
+            onPressed: isButtonEnabled ? () => _cashOut(ref, context, amount) : null,
             label: Text(S.current.cashOut),
             icon: const Icon(Icons.attach_money),
             style: ButtonStyle(
                 fixedSize: const WidgetStatePropertyAll(Size(300, 56)),
-                foregroundColor: WidgetStateColor.resolveWith((states) => Theme.of(context).colorScheme.surface),
+                foregroundColor: WidgetStateColor.resolveWith((states) => states.contains(WidgetState.disabled)
+                    ? Theme.of(context).colorScheme.surfaceDim
+                    : Theme.of(context).colorScheme.surface),
                 textStyle: WidgetStateTextStyle.resolveWith((states) => Theme.of(context).textTheme.labelLarge!),
-                side: WidgetStateBorderSide.resolveWith(
-                    (states) => BorderSide(color: Theme.of(context).colorScheme.outline)),
-                backgroundColor: WidgetStateColor.resolveWith((states) => Theme.of(context).colorScheme.onSurface)),
+                side: WidgetStateBorderSide.resolveWith((states) => BorderSide(
+                    color: states.contains(WidgetState.disabled)
+                        ? Theme.of(context).colorScheme.outlineVariant
+                        : Theme.of(context).colorScheme.outline)),
+                backgroundColor: WidgetStateColor.resolveWith((states) => states.contains(WidgetState.disabled)
+                    ? Theme.of(context).colorScheme.onInverseSurface
+                    : Theme.of(context).colorScheme.onSurface)),
           ),
           const Spacer(),
         ],
@@ -48,7 +55,7 @@ class AtmScreen extends HookConsumerWidget {
   }
 
   void _cashOut(WidgetRef ref, BuildContext context, ValueNotifier<int> amount) {
-    ref.read(userProvider.notifier).cashOut(
+    ref.read(userNotifierProvider.notifier).cashOut(
         amount.value,
         (title, description) => showDialog(
             context: context,
@@ -80,36 +87,49 @@ class _Dialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Column(
+    return AlertDialog(
+      content: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title),
-          Text(description),
+          Text(title, style: Theme.of(context).textTheme.titleMedium),
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: Text(description, style: Theme.of(context).textTheme.bodyMedium),
+          ),
           if (!isError && banknotesCount != null)
-            ...banknotesCount!.entries.map((banknote) => banknote.value != 0
-                ? Text("${banknote.value}x ${banknote.key}${S.current.currencySuffix}")
-                : const SizedBox.shrink()),
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(S.current.ok))
+            ...banknotesCount!.entries
+                .where((banknote) => banknote.value != 0)
+                .map((banknote) => Text("${banknote.value}x ${banknote.key}${S.current.currencySuffix}")),
+          Container(
+              margin: const EdgeInsets.only(top: 16),
+              alignment: Alignment.bottomCenter,
+              child: TextButton(onPressed: () => Navigator.pop(context), child: Text(S.current.ok)))
         ],
       ),
     );
   }
 }
 
-class _AmountTextField extends StatelessWidget {
+class _AmountTextField extends HookWidget {
   const _AmountTextField(this.amount);
 
   final ValueNotifier<int> amount;
 
   @override
   Widget build(BuildContext context) {
+    final controller = useTextEditingController();
+    useEffect(() {
+      listener() => controller.text = amount.value == 0 ? "" : amount.value.toString();
+      amount.addListener(listener);
+      return () => amount.removeListener(listener);
+    });
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: TextField(
+        controller: controller,
         inputFormatters: [FilteringTextInputFormatter.digitsOnly],
-        onChanged: (value) => amount.value = int.parse(value),
+        onChanged: (value) => amount.value = value.isNotEmpty ? int.parse(value) : 0,
         keyboardType: TextInputType.number,
         maxLines: 1,
         decoration: InputDecoration(

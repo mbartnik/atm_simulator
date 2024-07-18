@@ -110,6 +110,26 @@ class S {
     );
   }
 
+  /// `Insufficient funds inside ATM`
+  String get insufficientAtmFundsDialogTitle {
+    return Intl.message(
+      'Insufficient funds inside ATM',
+      name: 'insufficientAtmFundsDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is not enough funds present inside ATM. We apologize for the inconvenience.`
+  String get insufficientAtmFundsDialogDesc {
+    return Intl.message(
+      'There is not enough funds present inside ATM. We apologize for the inconvenience.',
+      name: 'insufficientAtmFundsDialogDesc',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Withdraw money`
   String get cashOut {
     return Intl.message(

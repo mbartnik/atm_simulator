@@ -32,6 +32,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "cashOutSuccessfulDialogTitle": MessageLookupByLibrary.simpleMessage(
             "Money withdrawal has been successful"),
         "currencySuffix": MessageLookupByLibrary.simpleMessage(" PLN"),
+        "insufficientAtmFundsDialogDesc": MessageLookupByLibrary.simpleMessage(
+            "There is not enough funds present inside ATM. We apologize for the inconvenience."),
+        "insufficientAtmFundsDialogTitle": MessageLookupByLibrary.simpleMessage(
+            "Insufficient funds inside ATM"),
         "insufficientFundsDialogDesc": MessageLookupByLibrary.simpleMessage(
             "Please enter a number that\'s lower than your balance."),
         "insufficientFundsDialogTitle":
